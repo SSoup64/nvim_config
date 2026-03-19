@@ -2,6 +2,22 @@
 --- Load Lazy plugin manager
 require("config.lazy")
 
+--- Compile mode
+vim.opt.splitbelow = true
+vim.g.compile_mode = {
+	default_command = {
+		c = "cc -o %:r % && ./%:r",
+		cpp = "cc -std=c++23 -o %:r % && ./%:r",
+		rust = "cargo r",
+		c3 = "c3c run",
+		python = "python %",
+		go = "go run %",
+		java = "javac % && java %:r",
+		lua = "lua %",
+	},
+	focus_compilation_buffer = true,
+}
+
 --- Change the color theme
 vim.cmd("colorscheme gruber-darker")
 
@@ -36,3 +52,4 @@ vim.filetype.add({
         c3 = 'c3',
     },
 })
+
