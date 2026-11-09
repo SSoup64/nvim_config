@@ -16,12 +16,25 @@ vim.g.compile_mode = {
 		lua = "lua %",
 	},
 	focus_compilation_buffer = true,
+	input_word_completion = true,
+	bang_expansion = true,
 }
 
+--- Dired.nvim
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Check if no files were passed on startup
+    if vim.fn.argc() == 0 then
+      -- Open Dired.nvim (adjust command if yours is different)
+      vim.cmd("Dired")
+    end
+  end,
+})
+
+---- Other options
 --- Change the color theme
 vim.cmd("colorscheme gruber-darker")
 
----- Other options
 --- Line numbers
 vim.wo.relativenumber = true
 vim.wo.number = true
@@ -52,4 +65,18 @@ vim.filetype.add({
         c3 = 'c3',
     },
 })
+
+--- Keyboard binds
+vim.keymap.set("n", "<Esc><Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<leader>x", ":Compile!<CR>")
+
+
+
+
+
+
+
+
+
+
 
